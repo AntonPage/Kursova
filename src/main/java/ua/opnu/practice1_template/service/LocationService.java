@@ -39,4 +39,8 @@ public class LocationService {
   public void delete(Long id) {
     locationRepository.deleteById(id);
   }
+
+  public List<Location> getTopLocations() {
+    return locationRepository.findTopLocationsByExhibitionCount();
+  }
 }

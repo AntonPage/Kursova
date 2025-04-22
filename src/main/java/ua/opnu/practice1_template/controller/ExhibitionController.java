@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import ua.opnu.practice1_template.model.Exhibition;
 import ua.opnu.practice1_template.service.ExhibitionService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/exhibitions")
@@ -49,5 +51,22 @@ public class ExhibitionController {
   public ResponseEntity<Void> delete(@PathVariable Long id) {
     exhibitionService.delete(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @GetMapping("/current")
+  public List<Exhibition> getCurrentExhibitions() {
+    return exhibitionService.findCurrentExhibitions();
+  }
+
+  @GetMapping("/artist/{artistId}")
+  public List<Exhibition> getExhibitionsByArtist(@PathVariable Long artistId) {
+    return exhibitionService.findByArtistId(artistId);
+  }
+
+  @GetMapping("/statistics")
+  public Map<String, Object> getExhibitionStatistics() {
+    Map<String, Object> stats = new HashMap<>();
+    stats.put("total", exhibitionService.countExhibitions());
+    return stats;
   }
 }

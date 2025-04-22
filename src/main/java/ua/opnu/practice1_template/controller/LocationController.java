@@ -50,4 +50,9 @@ public class LocationController {
     locationService.delete(id);
     return ResponseEntity.noContent().build();
   }
+
+  @GetMapping("/top")
+  public List<Location> getTopLocations() {
+    return locationService.getTopLocations();
+  }
 }

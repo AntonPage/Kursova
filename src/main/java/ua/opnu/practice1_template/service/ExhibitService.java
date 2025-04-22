@@ -41,4 +41,12 @@ public class ExhibitService {
   public void delete(Long id) {
     exhibitRepository.deleteById(id);
   }
+
+  public List<Exhibit> findByYear(int year) {
+    return exhibitRepository.findByYearCreated(year);
+  }
+
+  public List<Exhibit> findWithoutExhibition() {
+    return exhibitRepository.findExhibitsWithoutExhibition();
+  }
 }

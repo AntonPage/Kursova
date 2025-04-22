@@ -50,4 +50,9 @@ public class ArtistController {
     artistService.delete(id);
     return ResponseEntity.noContent().build();
   }
+
+  @GetMapping("/by-country")
+  public List<Artist> getByCountry(@RequestParam String country) {
+    return artistService.findByCountry(country);
+  }
 }

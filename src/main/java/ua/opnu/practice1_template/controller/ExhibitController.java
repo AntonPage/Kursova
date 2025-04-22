@@ -50,4 +50,14 @@ public class ExhibitController {
     exhibitService.delete(id);
     return ResponseEntity.noContent().build();
   }
+
+  @GetMapping("/byYear/{year}")
+  public List<Exhibit> getExhibitsByYear(@PathVariable int year) {
+    return exhibitService.findByYear(year);
+  }
+
+  @GetMapping("/without-exhibition")
+  public List<Exhibit> getWithoutExhibition() {
+    return exhibitService.findWithoutExhibition();
+  }
 }

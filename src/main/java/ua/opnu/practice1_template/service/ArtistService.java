@@ -39,4 +39,8 @@ public class ArtistService {
   public void delete(Long id) {
     artistRepository.deleteById(id);
   }
+
+  public List<Artist> findByCountry(String country) {
+    return artistRepository.findByCountry(country);
+  }
 }

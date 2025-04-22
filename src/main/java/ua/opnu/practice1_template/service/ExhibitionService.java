@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ua.opnu.practice1_template.model.Exhibition;
 import ua.opnu.practice1_template.repository.ExhibitionRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,5 +41,18 @@ public class ExhibitionService {
 
   public void delete(Long id) {
     exhibitionRepository.deleteById(id);
+  }
+
+  public List<Exhibition> findCurrentExhibitions() {
+    LocalDate today = LocalDate.now();
+    return exhibitionRepository.findByStartDateBeforeAndEndDateAfter(today, today);
+  }
+
+  public List<Exhibition> findByArtistId(Long artistId) {
+    return exhibitionRepository.findByArtistId(artistId);
+  }
+
+  public long countExhibitions() {
+    return exhibitionRepository.count();
   }
 }
