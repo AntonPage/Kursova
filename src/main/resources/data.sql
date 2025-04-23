@@ -1,3 +1,10 @@
+DELETE FROM exhibition_entry;
+DELETE FROM exhibition;
+DELETE FROM exhibit;
+DELETE FROM location;
+DELETE FROM artist;
+
+
 INSERT INTO artist (id, name, country) VALUES (1, 'Ivan Petrov', 'Ukraine');
 INSERT INTO artist (id, name, country) VALUES (2, 'Anna Kowalska', 'Poland');
 
