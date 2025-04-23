@@ -17,20 +17,17 @@ public class ExhibitionEntryController {
     this.entryService = entryService;
   }
 
-  // Додати експонат до виставки
   @PostMapping
   public ExhibitionEntry assignExhibitToExhibition(@RequestBody ExhibitionEntry entry) {
     return entryService.assignExhibitToExhibition(entry);
   }
 
-  // Видалити експонат з виставки
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> removeEntry(@PathVariable Long id) {
     entryService.removeEntry(id);
     return ResponseEntity.noContent().build();
   }
 
-  // Отримати експонат за ID
   @GetMapping("/{id}")
   public ResponseEntity<ExhibitionEntry> getById(@PathVariable Long id) {
     return entryService.getById(id)
@@ -38,13 +35,11 @@ public class ExhibitionEntryController {
         .orElse(ResponseEntity.notFound().build());
   }
 
-  // Отримати всі експонати
   @GetMapping
   public List<ExhibitionEntry> getAll() {
     return entryService.getAll();
   }
 
-  // Отримати експонати по ID виставки
   @GetMapping("/by-exhibition/{exhibitionId}")
   public List<ExhibitionEntry> getByExhibitionId(@PathVariable Long exhibitionId) {
     return entryService.getByExhibitionId(exhibitionId);
