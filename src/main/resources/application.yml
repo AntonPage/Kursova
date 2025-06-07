@@ -1,18 +1,37 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://dpg-d10l96u3jp1c7394466g-a.frankfurt-postgres.render.com:5432/exhibitiondb_new
+    username: exhibitiondb_new_user
+    password: YHRUEjSQrmHO7zaWk0DdKsVFF9aCeqwZ
+    driver-class-name: org.postgresql.Driver
+
   jpa:
-    database: POSTGRESQL
-    show-sql: true
     hibernate:
       ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    url: jdbc:postgresql://dpg-d00j5r1r0fns73ebi5kg-a.frankfurt-postgres.render.com:5432/exhibitiondb
-    username: user_exhibition
-    password: InrRE9wClvTVGUs4oicr8UFMevNdN3j3
-    driverClassName: org.postgresql.Driver
+
   sql:
     init:
       platform: postgres
       mode: always
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 1050285990177-98s52il2jq5ah03ob4jik6e2pg3nf2nj.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - email
+              - profile
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+            user-name-attribute: sub
